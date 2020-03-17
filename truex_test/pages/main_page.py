@@ -4,6 +4,9 @@ from truex_test.locators.main import *
 
 class MainPage:
 
+    def __init__(self, driver):
+        self.driver = driver
+
     def date_range_picker(self, last_days):
         current_date = datetime.datetime.today()
         for i in range(last_days):

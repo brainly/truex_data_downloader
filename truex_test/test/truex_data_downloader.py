@@ -13,11 +13,11 @@ class TruexHappyPath(unittest.TestCase):
         chrome_options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
         self.driver.get(truex_url)
-        self.main_page, self.login_page = MainPage, LoginPage
+        self.main_page, self.login_page = MainPage(self.driver), LoginPage(self.driver)
 
     def test_ads_pl(self):
-        self.login_page.login_into_truex_interface(self)
-        self.main_page.date_range_picker(self, last_days=1)
+        self.login_page.login_into_truex_interface()
+        self.main_page.date_range_picker(last_days=1)
 
     def tearDown(self):
         self.driver.quit()
