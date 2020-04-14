@@ -1,6 +1,7 @@
 import datetime
 from truex_test.locators.main import *
 from typing import Dict, Any
+from selenium.webdriver.common.keys import Keys
 
 
 class MainPage:
@@ -11,10 +12,10 @@ class MainPage:
     def get_data_from_specific_day(self, input_date: datetime) -> Dict[str, Any]:
         self.driver.find_element(*drop_down_date).click()
         self.driver.find_element(*start_date).clear()
-        self.driver.find_element(*start_date).send_keys(input_date.month)
+        self.driver.find_element(*start_date).send_keys(str(input_date.month) + Keys.SPACE)
         self.driver.find_element(*start_date).send_keys(input_date.day)
         self.driver.find_element(*end_date).clear()
-        self.driver.find_element(*end_date).send_keys(input_date.month)
+        self.driver.find_element(*end_date).send_keys(str(input_date.month) + Keys.SPACE)
         self.driver.find_element(*end_date).send_keys(input_date.day)
         self.driver.find_element(*apply_button).click()
         return self.__extract_data_for_page()
